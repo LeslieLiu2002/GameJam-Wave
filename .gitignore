@@ -1,0 +1,9 @@
+# 默认忽略全部
+/*
+
+# 保留自身
+!.gitignore
+
+# 仅收录这两个目录
+!/Assets/
+!/ProjectSettings/
