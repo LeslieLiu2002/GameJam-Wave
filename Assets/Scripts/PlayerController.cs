@@ -3,14 +3,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Camera m_camera;
-    private CharacterController cc;//自带碰撞体和刚体,但是不带物理引擎
-    public float moveSpeed;
+    public float moveSpeed; // 正常移动速度
+    public float speedUp; // 加速移动的倍率
     public float upSpeed;
     public float downSpeed;
+    public float gravity; // 向下的力（重力加浮力的作用）
 
+    private CharacterController cc;//自带碰撞体和刚体,但是不带物理引擎
     private float horizontalMove, verticalMove;
     private Vector3 dir;
-    public float gravity;
     private Vector3 velocity;// 被重力控制的向下的速度
     // 利用Physics.CheckSphere来检测是否碰到地面
     public Transform groundCheck;// 检测点的中心位置
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         isGround = Physics.CheckSphere(groundCheck.position, checkRadius, groundLayer);
 
+        // 按空格垂直向上移动
         if (Input.GetKey(KeyCode.Space))
         {
             velocity.y = upSpeed;
@@ -35,28 +37,28 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = 0;
         }
-
+        // 按左ctrl垂直向下移动
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            velocity.y = -upSpeed;
+            velocity.y = -downSpeed;
         }
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             velocity.y = 0;
         }
-
+        // 检测是否到地底
         if (isGround && velocity.y < 0)
         {
             velocity.y = 0f;
         }
-
+        // 按左Shift加速移动
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            moveSpeed *= 2;
+            moveSpeed *= speedUp;
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            moveSpeed /= 2;
+            moveSpeed /= speedUp;
         }
 
         horizontalMove = Input.GetAxis("Horizontal") * moveSpeed;
