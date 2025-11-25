@@ -4,6 +4,7 @@
 # 保留自身
 !.gitignore
 
-# 仅收录这两个目录
+# 仅以下目录
 !/Assets/
 !/ProjectSettings/
+!/Packages/
