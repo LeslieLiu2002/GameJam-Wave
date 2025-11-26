@@ -3,11 +3,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Camera m_camera;
-    public float moveSpeed; // 正常移动速度
-    public float speedUp; // 加速移动的倍率
+    public float norSpeed; // 正常移动速度
+    public float accSpeed; // 加速移动速度
     public float upSpeed;
     public float downSpeed;
     public float gravity; // 向下的力（重力加浮力的作用）
+    public float StaminaValue; // 体力条的总值
+    public float StaminaCost; // 体力的消耗值
+    public float StaminaRecover; // 体力的恢复值
+    public float StaminaCurrent; // 当前的体力
+    public float StaminaMin; // 运行冲刺的最小值
 
     private CharacterController cc;//自带碰撞体和刚体,但是不带物理引擎
     private float horizontalMove, verticalMove;
@@ -18,31 +23,44 @@ public class PlayerController : MonoBehaviour
     public float checkRadius;// 检测点的半径
     public LayerMask groundLayer;// 需要检测的层级
     private bool isGround;
+    private PlayerInputHub pih;
+    private bool isDash;
+    private float moveSpeed;
+
+    void Awake()
+    {
+        pih = GameObject.Find("GameController").GetComponent<PlayerInputHub>();
+    }
 
     void Start()
     {
         cc = GetComponent<CharacterController>();
+        StaminaCurrent = StaminaValue;
+        isDash = false;
+        moveSpeed = norSpeed;
     }
 
     void Update()
     {
         isGround = Physics.CheckSphere(groundCheck.position, checkRadius, groundLayer);
 
+
+
         // 按空格垂直向上移动
-        if (Input.GetKey(KeyCode.Space))
+        if (pih.AscendDown)
         {
             velocity.y = upSpeed;
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (pih.AscendUp)
         {
             velocity.y = 0;
         }
         // 按左ctrl垂直向下移动
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (pih.DescendDown)
         {
             velocity.y = -downSpeed;
         }
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (pih.DescendUp)
         {
             velocity.y = 0;
         }
@@ -52,17 +70,11 @@ public class PlayerController : MonoBehaviour
             velocity.y = 0f;
         }
         // 按左Shift加速移动
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            moveSpeed *= speedUp;
-        }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            moveSpeed /= speedUp;
-        }
+        DashControl();
+        ReduceAndRecoverStamina();
 
-        horizontalMove = Input.GetAxis("Horizontal") * moveSpeed;
-        verticalMove = Input.GetAxis("Vertical") * moveSpeed;
+        horizontalMove = pih.Horizontal * moveSpeed;
+        verticalMove = pih.Vertical * moveSpeed;
 
         Vector3 camForward = m_camera.transform.forward.normalized;
         Vector3 camRight = m_camera.transform.right.normalized;
@@ -73,6 +85,38 @@ public class PlayerController : MonoBehaviour
 
         velocity.y -= gravity * Time.deltaTime;
         cc.Move(velocity * Time.deltaTime);
+    }
+
+    void DashControl()
+    {
+        if (pih.Horizontal != 0 || pih.Vertical != 0)
+        {
+            if (pih.SprintHeld && StaminaCurrent > StaminaMin)
+            {
+                moveSpeed = accSpeed;
+                isDash = true;
+            }
+            else
+            {
+                moveSpeed = norSpeed;
+                isDash = false;
+            }
+        }
+    }
+
+    void ReduceAndRecoverStamina()
+    {
+        if (pih.Horizontal != 0 || pih.Vertical != 0)
+        {
+            if (pih.SprintHeld && StaminaCurrent > 0)
+            {
+                StaminaCurrent -= StaminaCost * Time.deltaTime;
+            }
+        }
+        if (!isDash && StaminaCurrent < StaminaValue)
+        {
+            StaminaCurrent += StaminaRecover * Time.deltaTime;
+        }
     }
 
 }
