@@ -1,5 +1,64 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8072076529404194868
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb3aada142141fd45a92cd029c844957, type: 3}
+  m_Name: ExponentialHeightFog
+  m_EditorClassIdentifier: 
+  active: 1
+  <displayName>k__BackingField: 
+  enabled:
+    <fieldHash>k__BackingField: 143403688
+    m_OverrideState: 1
+    m_Value: 1
+  fogColor:
+    <fieldHash>k__BackingField: 382754080
+    m_OverrideState: 1
+    m_Value:
+      r: 0
+      g: 0
+      b: 0
+      a: 1
+  fogDensity:
+    <fieldHash>k__BackingField: 622104472
+    m_OverrideState: 1
+    m_Value: 1.95
+  fogStartHeight:
+    <fieldHash>k__BackingField: 861454864
+    m_OverrideState: 1
+    m_Value: 10.02
+  fogFalloff:
+    <fieldHash>k__BackingField: -1997410080
+    m_OverrideState: 1
+    m_Value: 3.88
+  noiseTexture:
+    <fieldHash>k__BackingField: -1279358904
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  scatteringColor:
+    <fieldHash>k__BackingField: -800658120
+    m_OverrideState: 0
+    m_Value:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
+  scatteringIntensity:
+    <fieldHash>k__BackingField: -321957336
+    m_OverrideState: 0
+    m_Value: 1
+  scatteringFalloff:
+    <fieldHash>k__BackingField: 635444232
+    m_OverrideState: 0
+    m_Value: 1
 --- !u!114 &-7893295128165547882
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -47,6 +106,22 @@ MonoBehaviour:
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 0
+--- !u!114 &-3985497852707833799
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa83f769b6f44704abcb2f87c54a906f, type: 3}
+  m_Name: InWaterVolumeComponent
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 1
+    m_Value: 1
 --- !u!114 &-3357603926938260329
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -92,6 +167,7 @@ MonoBehaviour:
   - {fileID: -7893295128165547882}
   - {fileID: 7391319092446245454}
   - {fileID: -3357603926938260329}
+  - {fileID: 8923709230527510502}
 --- !u!114 &849379129802519247
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -132,6 +208,74 @@ MonoBehaviour:
   maxNits:
     m_OverrideState: 1
     m_Value: 647
+--- !u!114 &1901686017532409381
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798cf04363d1f5544a820d964bda1957, type: 3}
+  m_Name: ExponentialHeightFog
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    m_OverrideState: 1
+    m_Value: 1
+  waterLevel:
+    m_OverrideState: 1
+    m_Value: 2.99
+  startDistance:
+    m_OverrideState: 1
+    m_Value: 3.43
+  waterShallowColor:
+    m_OverrideState: 1
+    m_Value: {r: 0.27093458, g: 0.58417225, b: 0.64779866, a: 1}
+  waterDeepColor:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0.1, b: 0.3, a: 1}
+  underwaterFogBrightness:
+    m_OverrideState: 1
+    m_Value: 1
+  heightFogBrightness:
+    m_OverrideState: 1
+    m_Value: 1
+  underwaterFogDensity:
+    m_OverrideState: 1
+    m_Value: 0.122
+  heightFogDensity:
+    m_OverrideState: 1
+    m_Value: 0.3
+  heightFogDepth:
+    m_OverrideState: 1
+    m_Value: -3.76
+  noiseTexture:
+    m_OverrideState: 1
+    m_Value: {fileID: 2800000, guid: 7635a1df863a320408c1ee309d05df24, type: 3}
+    dimension: 1
+  distortionSpeed:
+    m_OverrideState: 1
+    m_Value: {x: 0.05, y: 0.05, z: -0.05, w: -0.05}
+  distortionStrength:
+    m_OverrideState: 1
+    m_Value: 0.0081
+  edgeFade:
+    m_OverrideState: 1
+    m_Value: 0.058
+  enableHelmetMask:
+    m_OverrideState: 1
+    m_Value: 0
+  helmetColor:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  lensDistortionStrength:
+    m_OverrideState: 1
+    m_Value: 0.37
+  maskHardness:
+    m_OverrideState: 1
+    m_Value: 66.1
 --- !u!114 &7391319092446245454
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -157,3 +301,71 @@ MonoBehaviour:
   clamp:
     m_OverrideState: 0
     m_Value: 0.05
+--- !u!114 &8923709230527510502
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798cf04363d1f5544a820d964bda1957, type: 3}
+  m_Name: ExponentialHeightFog
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    m_OverrideState: 1
+    m_Value: 1
+  waterLevel:
+    m_OverrideState: 1
+    m_Value: 0.06
+  startDistance:
+    m_OverrideState: 1
+    m_Value: 0
+  waterShallowColor:
+    m_OverrideState: 0
+    m_Value: {r: 0.3, g: 0.8, b: 0.9, a: 1}
+  waterDeepColor:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0.1, b: 0.3, a: 1}
+  underwaterFogBrightness:
+    m_OverrideState: 0
+    m_Value: 1
+  heightFogBrightness:
+    m_OverrideState: 0
+    m_Value: 1
+  underwaterFogDensity:
+    m_OverrideState: 0
+    m_Value: 0.05
+  heightFogDensity:
+    m_OverrideState: 0
+    m_Value: 0.5
+  heightFogDepth:
+    m_OverrideState: 0
+    m_Value: 0
+  noiseTexture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  distortionSpeed:
+    m_OverrideState: 0
+    m_Value: {x: 0.05, y: 0.05, z: -0.05, w: -0.05}
+  distortionStrength:
+    m_OverrideState: 0
+    m_Value: 0.02
+  edgeFade:
+    m_OverrideState: 0
+    m_Value: 0.1
+  enableHelmetMask:
+    m_OverrideState: 0
+    m_Value: 0
+  helmetColor:
+    m_OverrideState: 0
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  lensDistortionStrength:
+    m_OverrideState: 0
+    m_Value: 0
+  maskHardness:
+    m_OverrideState: 0
+    m_Value: 400
