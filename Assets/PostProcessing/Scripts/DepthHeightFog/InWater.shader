@@ -226,8 +226,8 @@ Shader "Hidden/SimpleDepthFog"
                     // 计算面罩 Alpha (白色为可视区域，黑色为面罩遮挡)
                     // 这里传入 finalUV (应用了透镜畸变但未应用水波扰动的UV，保证面罩形状稳定)
                     // 或者传入 fogUV (让面罩边缘也跟着水波晃动)。通常面罩是贴在脸上的，不应该随水波晃动。
-                    // 所以我们使用 finalUV (LensWarped UV)。
-                    float helmetMask = GetRoundSquareMask(i.uv, _MaskHardness);
+                    // 所以我们使用 finalUV (LensWarped UV)
+                    float helmetMask = GetRoundSquareMask(finalUV, _MaskHardness);
                     
                     // 混合: mask为1显示场景，mask为0显示面罩颜色
                     finalSceneColor = lerp(_HelmetColor.rgb, finalSceneColor, helmetMask);
