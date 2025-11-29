@@ -23,7 +23,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 50
   enableGround:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   groundHeight:
     m_OverrideState: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 1
   renderPassEvent:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 550
 --- !u!114 &-8072076529404194868
 MonoBehaviour:
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 798cf04363d1f5544a820d964bda1957, type: 3}
   m_Name: ExponentialHeightFog
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     m_OverrideState: 1
     m_Value: 1
