@@ -10,23 +10,30 @@ public class HelmetUISwitcher : MonoBehaviour
 
     private bool isShown;
     private bool isAnimating;
-    private PlayerInputHub pih;
+    private PlayerController pc;
 
     private void Awake()
     {
-        pih = GameObject.Find("GameController").GetComponent<PlayerInputHub>();
+        pc = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     private void Update()
     {
-        if (pih.EDown && !isAnimating)
+        if (pc.isWearHelmet)
         {
-            if (isShown)
-                StartCoroutine(HidePanel());
-            else
+            if (!isShown && !isAnimating)
+            {
                 StartCoroutine(ShowPanel());
-
-            isShown = !isShown;
+                isShown = true;
+            }
+        }
+        else
+        {
+            if (isShown && !isAnimating)
+            {
+                StartCoroutine(HidePanel());
+                isShown = false;
+            }
         }
     }
 

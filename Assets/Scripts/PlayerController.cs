@@ -12,7 +12,13 @@ public class PlayerController : MonoBehaviour
     public float StaminaCost; // 体力的消耗值
     public float StaminaRecover; // 体力的恢复值
     public float StaminaCurrent; // 当前的体力
-    public float StaminaMin; // 运行冲刺的最小值
+    public float StaminaMin; // 允许冲刺的最小值
+    public float HelmetValue; // 头盔的可佩戴时间总值
+    public float HelmetCost; // 头盔的佩戴消耗值
+    public float HelmetRecover; // 头盔的佩戴恢复值
+    public float HelmetCurrent; //  当前可佩戴时间
+    public float HelmetMin; // 允许佩戴的最小值
+    public bool isWearHelmet;
 
     private CharacterController cc;//自带碰撞体和刚体,但是不带物理引擎
     private float horizontalMove, verticalMove;
@@ -25,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private bool isGround;
     private PlayerInputHub pih;
     private bool isDash;
+    private bool isAllowHelmet;
     private float moveSpeed;
 
     void Awake()
@@ -43,8 +50,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         isGround = Physics.CheckSphere(groundCheck.position, checkRadius, groundLayer);
-
-
 
         // 按空格垂直向上移动
         if (pih.AscendDown)
@@ -72,6 +77,10 @@ public class PlayerController : MonoBehaviour
         // 按左Shift加速移动
         DashControl();
         ReduceAndRecoverStamina();
+
+        // 佩戴头盔
+        HelmetController();
+        ReduceAndRecoverHelmet();
 
         horizontalMove = pih.Horizontal * moveSpeed;
         verticalMove = pih.Vertical * moveSpeed;
@@ -119,4 +128,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void HelmetController()
+    {
+        if (isAllowHelmet)
+        {
+            if (pih.EDown) isWearHelmet = !isWearHelmet;
+        }
+        else if (isWearHelmet)
+        {
+            isWearHelmet = !isWearHelmet;
+        }
+    }
+    void ReduceAndRecoverHelmet()
+    {
+        if (isWearHelmet)
+        {
+            if (HelmetCurrent > 0) HelmetCurrent -= HelmetCost * Time.deltaTime;
+            else isAllowHelmet = false;
+        }
+        else
+        {
+            if (HelmetCurrent > HelmetMin) isAllowHelmet = true;
+            if (HelmetCurrent < HelmetValue) HelmetCurrent += HelmetRecover * Time.deltaTime;
+        }
+    }
 }

@@ -14,9 +14,9 @@ TagManager:
   - Ground
   - Obstacle
   - Enemy
-  - 
-  - 
-  - 
+  - Radar
+  - Player
+  - Reward
   - 
   - 
   - 
@@ -40,6 +40,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Radar
+    uniqueID: 2596360581
     locked: 0
   m_RenderingLayers:
   - Default

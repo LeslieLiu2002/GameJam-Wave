@@ -24,6 +24,7 @@ public class PlayerInputHub : MonoBehaviour
 
     // 交互（开关 UI 等）
     public bool EDown { get; private set; }  // E 按下瞬间
+    public bool Settings { get; private set; } // 按下esc并抬起
 
     void Update()
     {
@@ -43,5 +44,6 @@ public class PlayerInputHub : MonoBehaviour
         SprintHeld = Input.GetKey(KeyCode.LeftShift);
 
         EDown = Input.GetKeyDown(KeyCode.E);
+        Settings = Input.GetKeyDown(KeyCode.Escape);
     }
 }
