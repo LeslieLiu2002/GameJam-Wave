@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 798cf04363d1f5544a820d964bda1957, type: 3}
   m_Name: ExponentialHeightFog
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     m_OverrideState: 1
     m_Value: 1
