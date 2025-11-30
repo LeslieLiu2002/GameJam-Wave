@@ -9,6 +9,13 @@ public class HelmetSwitcher : MonoBehaviour
     public float animationSpeed = 1f;
     public GameObject helmetUIPanel;
     public Volume globalVolume;
+    public ScannerController scannerController;
+    public GameObject spotLight;
+
+    [Header("Audio")]
+    public AudioSource helmetAudioSource;
+    public AudioClip helmetOnClip;
+    public AudioClip helmetOffClip;
 
     private bool isShown;
     private bool isAnimating;
@@ -24,8 +31,15 @@ public class HelmetSwitcher : MonoBehaviour
         if (globalVolume != null && globalVolume.profile != null &&
             globalVolume.profile.TryGet(out visualController))
         {
-            visualController.enableHelmetMask.overrideState = true; // 允许被脚本修改
+            visualController.enableHelmetMask.overrideState = true; // allow script control
         }
+
+        if (helmetAudioSource == null)
+            helmetAudioSource = GetComponent<AudioSource>();
+
+        helmetAudioSource.playOnAwake = false;
+        // helmetAudioSource.loop = false;
+
     }
 
     private void Update()
@@ -34,7 +48,10 @@ public class HelmetSwitcher : MonoBehaviour
         {
             if (!isShown && !isAnimating)
             {
+                PlayHelmetAudio(helmetOnClip);
                 StartCoroutine(ShowPanel());
+                spotLight.SetActive(false);
+                scannerController.Open();
                 visualController.enableHelmetMask.value = pc.isWearHelmet;
                 isShown = true;
             }
@@ -43,7 +60,10 @@ public class HelmetSwitcher : MonoBehaviour
         {
             if (isShown && !isAnimating)
             {
+                PlayHelmetAudio(helmetOffClip);
                 StartCoroutine(HidePanel());
+                spotLight.SetActive(true);
+                scannerController.Close();
                 visualController.enableHelmetMask.value = pc.isWearHelmet;
                 isShown = false;
             }
@@ -60,7 +80,7 @@ public class HelmetSwitcher : MonoBehaviour
             t += Time.deltaTime * animationSpeed;
             yield return null;
         }
-        // 强制收尾，避免浮点误差
+        // Snap final value to avoid floating point drift
         helmetUIPanel.transform.localScale = Vector3.one * showCurve.Evaluate(1f);
         isAnimating = false;
     }
@@ -75,9 +95,18 @@ public class HelmetSwitcher : MonoBehaviour
             t += Time.deltaTime * animationSpeed;
             yield return null;
         }
-        // 强制收尾，避免浮点误差
+        // Snap final value to avoid floating point drift
         helmetUIPanel.transform.localScale = Vector3.one * hideCurve.Evaluate(1f);
         isAnimating = false;
     }
-}
 
+    private void PlayHelmetAudio(AudioClip clip)
+    {
+        if (helmetAudioSource == null || clip == null)
+            return;
+
+        helmetAudioSource.Stop();
+        helmetAudioSource.clip = clip;
+        helmetAudioSource.Play();
+    }
+}
