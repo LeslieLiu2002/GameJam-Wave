@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0c901175fb1bf498e38366a3c674c7, type: 3}
   m_Name: exHeightFogFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   fogShader: {fileID: 4800000, guid: f6897fa0db858774f84b340daae1efad, type: 3}
 --- !u!114 &7833122117494664109
 MonoBehaviour:
