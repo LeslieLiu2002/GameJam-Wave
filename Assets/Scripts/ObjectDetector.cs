@@ -31,6 +31,6 @@ public class ObjectDetector : MonoBehaviour
                 targets.Add(target);
             }
         }
-        Debug.Log(targets);
+
     }
 }

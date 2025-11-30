@@ -10,11 +10,17 @@ public class CameraController : MonoBehaviour
     private float mouseX, mouseY;
     private float xRotation;
     private float yRotation;
+    private PlayerInputHub pih;
+
+    void Awake()
+    {
+        pih = GameObject.Find("GameController").GetComponent<PlayerInputHub>();
+    }
 
     void Update()
     {
-        mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        mouseX = pih.MouseX * mouseSensitivity * Time.deltaTime;
+        mouseY = pih.MouseY * mouseSensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -headMaxRotationAngle, headMaxRotationAngle);

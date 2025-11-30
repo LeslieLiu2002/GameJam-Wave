@@ -6,6 +6,11 @@
       "source": "git",
       "dependencies": {},
       "hash": "3f28b49218ca4c928ca0d4c3d508f0c0ddf43473"
+    "com.unity.2d.sprite": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
     },
     "com.unity.ai.navigation": {
       "version": "2.0.9",
