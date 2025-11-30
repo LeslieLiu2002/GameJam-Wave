@@ -364,13 +364,13 @@ MonoBehaviour:
     m_Value: 3.43
   waterShallowColor:
     m_OverrideState: 1
-    m_Value: {r: 0.27093458, g: 0.58417225, b: 0.64779866, a: 1}
+    m_Value: {r: 0.79458874, g: 0.88714844, b: 0.9056604, a: 1}
   waterDeepColor:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0.1, b: 0.3, a: 1}
   underwaterFogBrightness:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   heightFogBrightness:
     m_OverrideState: 1
     m_Value: 1
