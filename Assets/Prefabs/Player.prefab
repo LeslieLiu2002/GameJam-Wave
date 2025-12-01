@@ -494,7 +494,6 @@ GameObject:
   - component: {fileID: 7613334241293687278}
   - component: {fileID: 5656987855341240561}
   - component: {fileID: 6221944003297875351}
-  - component: {fileID: 6012487481665335509}
   - component: {fileID: 4694224139481826277}
   - component: {fileID: 1110755158380317518}
   m_Layer: 10
@@ -636,26 +635,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &6012487481665335509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4698487917916140202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02615883dd3d0984e8b555e9e58c6f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 256
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 128
-  detectRadius: 30
-  targets: []
 --- !u!114 &4694224139481826277
 MonoBehaviour:
   m_ObjectHideFlags: 0
