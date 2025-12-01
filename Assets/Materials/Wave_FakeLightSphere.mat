@@ -52,7 +52,7 @@ Material:
     m_Colors:
     - _LightTint: {r: 1, g: 1, b: 1, a: 1}
     - _ScanColor0: {r: 0, g: 0, b: 0, a: 1}
-    - _ScanColor1: {r: 16.687822, g: 2.5713904, b: 3.8056169, a: 1}
+    - _ScanColor1: {r: 22.27955, g: 0, b: 0, a: 1}
     - _ScanColor2: {r: 1.1083667, g: 1.1083667, b: 1.1083667, a: 1}
     - _ScanColor3: {r: 0, g: 1, b: 0.08086109, a: 1}
   m_BuildTextureStacks: []
