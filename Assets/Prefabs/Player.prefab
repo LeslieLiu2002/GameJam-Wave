@@ -616,7 +616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_camera: {fileID: 7380804467046542418}
   norSpeed: 4
-  accSpeed: 8
+  accSpeed: 10
   upSpeed: 5
   downSpeed: 5
   gravity: 1
@@ -624,7 +624,7 @@ MonoBehaviour:
   StaminaCost: 100
   StaminaRecover: 30
   StaminaCurrent: 300
-  StaminaMin: 5
+  StaminaMin: 50
   HelmetValue: 300
   HelmetCost: 50
   HelmetRecover: 30
