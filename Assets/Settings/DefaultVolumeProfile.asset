@@ -465,6 +465,143 @@ MonoBehaviour:
   - {fileID: -6288072647309666549}
   - {fileID: 7518938298396184218}
   - {fileID: -1410297666881709256}
+  - {fileID: 787806084013495701}
+  - {fileID: 198054515387113764}
+--- !u!114 &198054515387113764
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798cf04363d1f5544a820d964bda1957, type: 3}
+  m_Name: ExponentialHeightFog
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    m_OverrideState: 1
+    m_Value: 0
+  waterLevel:
+    m_OverrideState: 1
+    m_Value: 0
+  startDistance:
+    m_OverrideState: 1
+    m_Value: 0
+  waterShallowColor:
+    m_OverrideState: 1
+    m_Value: {r: 0.3, g: 0.8, b: 0.9, a: 1}
+  waterDeepColor:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0.1, b: 0.3, a: 1}
+  underwaterFogBrightness:
+    m_OverrideState: 1
+    m_Value: 1
+  heightFogBrightness:
+    m_OverrideState: 1
+    m_Value: 1
+  underwaterFogDensity:
+    m_OverrideState: 1
+    m_Value: 0.05
+  heightFogDensity:
+    m_OverrideState: 1
+    m_Value: 0.5
+  heightFogDepth:
+    m_OverrideState: 1
+    m_Value: 0
+  noiseTexture:
+    m_OverrideState: 1
+    m_Value: {fileID: 0}
+    dimension: 1
+  distortionSpeed:
+    m_OverrideState: 1
+    m_Value: {x: 0.05, y: 0.05, z: -0.05, w: -0.05}
+  distortionStrength:
+    m_OverrideState: 1
+    m_Value: 0.02
+  edgeFade:
+    m_OverrideState: 1
+    m_Value: 0.1
+  enableHelmetMask:
+    m_OverrideState: 1
+    m_Value: 0
+  helmetColor:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  lensDistortionStrength:
+    m_OverrideState: 1
+    m_Value: 0
+  maskHardness:
+    m_OverrideState: 1
+    m_Value: 400
+--- !u!114 &787806084013495701
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a074ec59f6e910b4e8c49f57e56cf95a, type: 3}
+  m_Name: VolumetricFogVolumeComponent
+  m_EditorClassIdentifier: 
+  active: 1
+  distance:
+    m_OverrideState: 1
+    m_Value: 64
+  baseHeight:
+    m_OverrideState: 1
+    m_Value: 0
+  maximumHeight:
+    m_OverrideState: 1
+    m_Value: 50
+  enableGround:
+    m_OverrideState: 1
+    m_Value: 0
+  groundHeight:
+    m_OverrideState: 1
+    m_Value: 0
+  density:
+    m_OverrideState: 1
+    m_Value: 0.2
+  attenuationDistance:
+    m_OverrideState: 1
+    m_Value: 128
+  enableAPVContribution:
+    m_OverrideState: 1
+    m_Value: 0
+  APVContributionWeight:
+    m_OverrideState: 1
+    m_Value: 1
+  enableMainLightContribution:
+    m_OverrideState: 1
+    m_Value: 0
+  anisotropy:
+    m_OverrideState: 1
+    m_Value: 0.4
+  scattering:
+    m_OverrideState: 1
+    m_Value: 0.15
+  tint:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  enableAdditionalLightsContribution:
+    m_OverrideState: 1
+    m_Value: 0
+  maxSteps:
+    m_OverrideState: 1
+    m_Value: 128
+  blurIterations:
+    m_OverrideState: 1
+    m_Value: 2
+  enabled:
+    m_OverrideState: 1
+    m_Value: 0
+  renderPassEvent:
+    m_OverrideState: 1
+    m_Value: 550
 --- !u!114 &853819529557874667
 MonoBehaviour:
   m_ObjectHideFlags: 3

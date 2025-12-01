@@ -10,6 +10,9 @@ public class EnemyRadarResponde : MonoBehaviour, IRadarDetectable
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private LayerMask obstacleMask;
     [SerializeField] private EnemyChaseController chaseController;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip devilfishClip;
+    [SerializeField] private AudioClip whaleClip;
 
     public float PulseRangeMax => pulseRangeMax;
 
@@ -23,6 +26,7 @@ public class EnemyRadarResponde : MonoBehaviour, IRadarDetectable
     {
         if (pulseTransform == null) pulseTransform = transform.Find("Pulse");
         if (chaseController == null) chaseController = transform.GetComponent<EnemyChaseController>();
+        if (audioSource == null) audioSource = transform.GetComponent<AudioSource>();
         pulseRenderer = pulseTransform.GetComponent<SpriteRenderer>();
         pulseColor = pulseRenderer.color;
         pulseTransform.gameObject.SetActive(false);
@@ -62,6 +66,7 @@ public class EnemyRadarResponde : MonoBehaviour, IRadarDetectable
                     {
                         chaseController.SetTarget(hit.transform);
                     }
+                    TryPlayDetectionSound();
                 }
             }
 
@@ -76,5 +81,40 @@ public class EnemyRadarResponde : MonoBehaviour, IRadarDetectable
         pulseColor.a = 1f;
         pulseRenderer.color = pulseColor;
         isPulsing = false;
+    }
+
+    private void TryPlayDetectionSound()
+    {
+        var clip = GetClipForTag();
+        if (clip == null || audioSource == null) return;
+
+        if (!ReserveAudioSlot(clip.length)) return;
+        audioSource.PlayOneShot(clip);
+    }
+
+    private AudioClip GetClipForTag()
+    {
+        if (CompareTag("DevilFish")) return devilfishClip;
+        if (CompareTag("Whale")) return whaleClip;
+        return null;
+    }
+
+    // Simple global limiter so多个敌人同时触发时只会有最多两个提示音在播。
+    private const int MaxConcurrentDetectClips = 2;
+    private static readonly List<double> activeClipEndTimes = new List<double>();
+
+    private static bool ReserveAudioSlot(float clipLength)
+    {
+        PruneExpiredSlots();
+        if (activeClipEndTimes.Count >= MaxConcurrentDetectClips) return false;
+
+        activeClipEndTimes.Add(AudioSettings.dspTime + clipLength);
+        return true;
+    }
+
+    private static void PruneExpiredSlots()
+    {
+        double now = AudioSettings.dspTime;
+        activeClipEndTimes.RemoveAll(endTime => endTime <= now);
     }
 }
